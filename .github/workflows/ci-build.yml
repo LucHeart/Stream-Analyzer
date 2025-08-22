@@ -46,7 +46,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/lucheart/vrcdn-bitrate-ingest
+          images: ${{ env.REGISTRY }}/lucheart/stream-analyzer
           flavor: |
             latest=false
           tags: |
