@@ -37,7 +37,7 @@ public class StreamCapture : IDisposable
     {
         foreach (var readOnlyMemory in e.Data)
         {
-            _videoMetric.Inc(readOnlyMemory.Length);
+            _videoMetric.Inc(readOnlyMemory.Length, DateTimeOffset.UtcNow);
         }
     }
 
@@ -45,7 +45,7 @@ public class StreamCapture : IDisposable
     {
         foreach (var readOnlyMemory in e.Data)
         {
-            _audioMetric.Inc(readOnlyMemory.Length);
+            _audioMetric.Inc(readOnlyMemory.Length, DateTimeOffset.UtcNow);
         }
     }
 

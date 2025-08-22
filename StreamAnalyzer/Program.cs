@@ -65,7 +65,7 @@ builder.ConfigureServices((context, services) =>
     });
 
     services.AddSingleton<IHostedService, MetricPusherHostedService>(provider =>
-        new MetricPusherHostedService(provider.GetRequiredService<IMetricPusher>(), TimeSpan.FromSeconds(2)));
+        new MetricPusherHostedService(provider.GetRequiredService<IMetricPusher>(), TimeSpan.FromSeconds(1)));
     services.AddHostedService<AnalyzerManager>();
 });
 

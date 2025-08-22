@@ -1,0 +1,27 @@
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+'
+
+name: ci-tag
+
+env:
+  DOTNET_VERSION: 9.0.x
+
+jobs:
+
+  # Delegate building and containerizing to a single workflow.
+  build:
+    uses: ./.github/workflows/ci-build.yml
+  
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          prerelease: ${{ contains(github.ref_name, '-rc') }}
